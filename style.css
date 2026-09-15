@@ -1030,6 +1030,718 @@ section {
     align-items: center;
     justify-content: space-between;
 
+   /* =========================================================
+   RIMG FINAL RESPONSIVE FIX
+   ========================================================= */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   DESKTOP HERO FIX
+   Prevent 40% + 60% + gap from overflowing
+   ========================================================= */
+
+.hero-container {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 50px;
+}
+
+.hero-content,
+.hero-dashboard {
+    min-width: 0;
+}
+
+.dashboard-window {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   NAVIGATION — DESKTOP
+   ========================================================= */
+
+.navbar {
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-container {
+    position: relative;
+    min-width: 0;
+}
+
+.desktop-navigation {
+    margin-left: auto;
+    margin-right: 40px;
+    gap: 28px;
+    flex-shrink: 1;
+}
+
+.navigation-actions {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DASHBOARD — DESKTOP
+   ========================================================= */
+
+.dashboard-content {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.dashboard-statistics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dashboard-stat-card {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.dashboard-stat-card > strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dashboard-lower {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+}
+
+.dashboard-panel {
+    min-width: 0;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .container {
+        width: calc(100% - 40px);
+    }
+
+    .desktop-navigation {
+        margin-right: 25px;
+        gap: 18px;
+        font-size: 11px;
+    }
+
+    .navigation-actions {
+        gap: 14px;
+        font-size: 11px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .hero-content {
+        max-width: 680px;
+    }
+
+    .hero-dashboard {
+        width: 100%;
+        max-width: 850px;
+        margin: 0 auto;
+    }
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .container {
+        width: calc(100% - 32px);
+    }
+
+    .navbar {
+        height: 68px;
+    }
+
+    .nav-container {
+        height: 68px;
+    }
+
+    /* Hide desktop links and login/join */
+    .navigation-actions {
+        display: none;
+    }
+
+    /* Show hamburger */
+    .mobile-menu-button {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 42px;
+        height: 42px;
+
+        margin-left: auto;
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+
+        background: rgba(255, 255, 255, 0.05);
+
+        color: #ffffff;
+
+        font-size: 22px;
+        line-height: 1;
+
+        cursor: pointer;
+
+        z-index: 1002;
+    }
+
+    /* Turn the existing desktop nav into mobile dropdown */
+    .desktop-navigation {
+        position: absolute;
+
+        top: 68px;
+        left: 0;
+        right: 0;
+
+        display: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        margin: 0;
+        padding: 8px;
+
+        background: #07152c;
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: none;
+
+        border-radius: 0 0 12px 12px;
+
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+
+        z-index: 1001;
+    }
+
+    /* JS adds this class */
+    .desktop-navigation.mobile-open {
+        display: flex;
+    }
+
+    .desktop-navigation a {
+        display: flex;
+        align-items: center;
+
+        min-height: 48px;
+
+        padding: 0 16px;
+
+        border-radius: 7px;
+
+        color: #d6dbe5;
+
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .desktop-navigation a:hover {
+        background: rgba(18, 100, 255, 0.12);
+        color: #ffffff;
+    }
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .hero {
+        padding: 58px 0 65px;
+    }
+
+    .hero-container {
+        width: calc(100% - 32px);
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 45px;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 11vw, 52px);
+        line-height: 1.02;
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-benefits {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+    }
+
+
+    /* =====================================================
+       DASHBOARD
+       ===================================================== */
+
+    .hero-dashboard {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dashboard-window {
+        width: 100%;
+
+        grid-template-columns: 92px minmax(0, 1fr);
+
+        min-height: 0;
+
+        border-radius: 14px;
+    }
+
+    .dashboard-sidebar {
+        padding: 18px 8px;
+    }
+
+    .dashboard-nav {
+        font-size: 7px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .dashboard-content {
+        padding: 15px;
+    }
+
+    .dashboard-statistics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .dashboard-stat-card {
+        min-width: 0;
+        padding: 10px;
+    }
+
+    .dashboard-stat-card > strong {
+        font-size: 13px;
+    }
+
+    .dashboard-lower {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+        gap: 7px;
+    }
+
+    .dashboard-panel {
+        padding: 10px;
+    }
+
+    .trade {
+        font-size: 7px;
+    }
+
+    .trade strong {
+        font-size: 7px;
+    }
+}
+
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+@media (max-width: 550px) {
+
+    .container {
+        width: calc(100% - 28px);
+    }
+
+    /* NAV */
+    .navbar,
+    .nav-container {
+        height: 65px;
+    }
+
+    .mobile-menu-button {
+        width: 40px;
+        height: 40px;
+        font-size: 21px;
+    }
+
+    .desktop-navigation {
+        top: 65px;
+    }
+
+    /* HERO */
+    .hero {
+        padding: 48px 0 55px;
+    }
+
+    .hero-container {
+        width: calc(100% - 28px);
+        gap: 38px;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 11vw, 47px);
+        letter-spacing: -1.8px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-button {
+        width: 100%;
+    }
+
+    .hero-benefits {
+        flex-direction: column;
+        align-items: center;
+        gap: 9px;
+    }
+
+
+    /* =====================================================
+       DASHBOARD MOBILE
+       ===================================================== */
+
+    .dashboard-window {
+        grid-template-columns: 1fr;
+
+        min-height: 0;
+
+        border-radius: 12px;
+    }
+
+    /* Hide sidebar on phones */
+    .dashboard-sidebar {
+        display: none;
+    }
+
+    .dashboard-content {
+        width: 100%;
+        padding: 13px;
+    }
+
+    .dashboard-header {
+        gap: 10px;
+    }
+
+    .dashboard-header h3 {
+        font-size: 14px;
+    }
+
+    .dashboard-user {
+        gap: 5px;
+    }
+
+    .user-information strong {
+        font-size: 6px;
+    }
+
+    .user-information span {
+        font-size: 5px;
+    }
+
+    .dashboard-statistics {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .dashboard-stat-card {
+        min-height: 70px;
+        padding: 12px;
+    }
+
+    .dashboard-stat-card > span {
+        font-size: 6px;
+    }
+
+    .dashboard-stat-card > strong {
+        font-size: 17px;
+    }
+
+    .dashboard-lower {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .dashboard-panel {
+        padding: 12px;
+    }
+
+    .chart {
+        height: 100px;
+    }
+
+
+    /* =====================================================
+       BENEFITS
+       ===================================================== */
+
+    .benefits-section {
+        padding: 60px 0;
+    }
+
+    .benefits-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .benefit-card {
+        min-width: 0;
+    }
+
+
+    /* =====================================================
+       HOW RIMG WORKS
+       ===================================================== */
+
+    .how-rimg-works {
+        padding: 60px 0;
+    }
+
+    .works-layout {
+        width: 100%;
+    }
+
+    .works-steps {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .works-arrow {
+        display: none;
+    }
+
+    .works-step {
+        width: 100%;
+    }
+
+    .ready-to-start {
+        width: 100%;
+    }
+
+
+    /* =====================================================
+       FEATURES
+       ===================================================== */
+
+    .features-section {
+        padding: 60px 0;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .feature-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    /* =====================================================
+       WHY RIMG
+       ===================================================== */
+
+    .why-rimg-section {
+        padding: 60px 0;
+    }
+
+    .why-rimg-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .why-rimg-content h2 {
+        max-width: 100%;
+        font-size: 28px;
+    }
+
+    .why-rimg-content p {
+        max-width: 100%;
+    }
+
+    .why-rimg-points {
+        width: 100%;
+    }
+
+
+    /* =====================================================
+       FAQ
+       ===================================================== */
+
+    .faq-section {
+        padding: 60px 0;
+    }
+
+    .faq-list {
+        width: 100%;
+    }
+
+    .faq-question {
+        padding: 0 15px;
+        gap: 12px;
+        font-size: 11px;
+    }
+
+    .faq-answer {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    /* =====================================================
+       FINAL CTA
+       ===================================================== */
+
+    .final-cta {
+        padding: 55px 0;
+    }
+
+    .final-cta-box {
+        width: 100%;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 25px;
+
+        padding: 30px 22px;
+    }
+
+    .final-cta-content {
+        width: 100%;
+    }
+
+    .final-cta-content h2 {
+        max-width: 100%;
+        font-size: 28px;
+    }
+
+    .final-cta-button {
+        width: 100%;
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .site-footer {
+        padding: 45px 0 25px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 37px;
+    }
+
+    .dashboard-content {
+        padding: 10px;
+    }
+
+    .dashboard-stat-card > strong {
+        font-size: 15px;
+    }
+
+    .features-heading h2,
+    .faq-heading h2 {
+        font-size: 23px;
+    }
+
+    .final-cta-content h2 {
+        font-size: 25px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+}
+
     padding: 25px 0;
 
     border: 0;
