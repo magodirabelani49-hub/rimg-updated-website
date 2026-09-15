@@ -844,6 +844,626 @@
 
         </section>
         <!-- ==========================================
+     RIMG CASHBACK CALCULATOR
+========================================== -->
+
+<style>
+
+.rimg-calc {
+    width: 100%;
+    background: #f8fafc;
+    padding: 90px 20px;
+    border-top: 1px solid #e5e8ec;
+    border-bottom: 1px solid #e5e8ec;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.rimg-calc *,
+.rimg-calc *::before,
+.rimg-calc *::after {
+    box-sizing: border-box;
+}
+
+.rimg-calc-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.rimg-calc-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 45px;
+}
+
+.rimg-calc-eyebrow {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: #1264ff;
+}
+
+.rimg-calc-header h2 {
+    margin: 0;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.rimg-calc-header h2 span {
+    color: #1264ff;
+}
+
+.rimg-calc-header p {
+    max-width: 570px;
+    margin: 20px auto 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #68717d;
+}
+
+.rimg-calc-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e2e6eb;
+    border-radius: 20px;
+    padding: 38px;
+    box-shadow: 0 15px 45px rgba(17, 24, 39, 0.07);
+}
+
+.rimg-calc-field {
+    margin-bottom: 30px;
+}
+
+.rimg-calc-field label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    color: #68717d;
+}
+
+.rimg-calc-field select {
+    width: 100%;
+    height: 58px;
+    padding: 0 18px;
+    border: 1px solid #dce2e9;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #111827;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
+.rimg-calc-field select:focus {
+    border-color: #1264ff;
+    box-shadow: 0 0 0 3px rgba(18, 100, 255, 0.10);
+}
+
+.rimg-calc-input-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.rimg-calc-input-wrap input {
+    width: 100%;
+    height: 62px;
+    padding: 0 80px 0 18px;
+    border: 1px solid #dce2e9;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #111827;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+    outline: none;
+}
+
+.rimg-calc-input-wrap input:focus {
+    border-color: #1264ff;
+    box-shadow: 0 0 0 3px rgba(18, 100, 255, 0.10);
+}
+
+.rimg-calc-input-wrap span {
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #68717d;
+    pointer-events: none;
+}
+
+.rimg-calc-input-wrap input::-webkit-outer-spin-button,
+.rimg-calc-input-wrap input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.rimg-calc-input-wrap input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.rimg-calc-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.rimg-calc-presets button {
+    min-width: 48px;
+    height: 38px;
+    padding: 0 14px;
+    border: 1px solid #dce2e9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #4b5563;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.rimg-calc-presets button:hover,
+.rimg-calc-presets button.rimg-active {
+    border-color: #1264ff;
+    background: #1264ff;
+    color: #ffffff;
+}
+
+.rimg-calc-result {
+    margin-top: 36px;
+    padding: 32px;
+    text-align: center;
+    background: #f7f9fc;
+    border: 1px solid #e8ebef;
+    border-radius: 14px;
+}
+
+.rimg-calc-result-label {
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #68717d;
+}
+
+.rimg-calc-result-value {
+    font-size: 68px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #1264ff;
+}
+
+.rimg-calc-result-description {
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #68717d;
+}
+
+.rimg-calc-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #dce2e9;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.rimg-calc-warning-icon {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #f0f5ff;
+    font-size: 18px;
+}
+
+.rimg-calc-warning-content {
+    flex: 1;
+}
+
+.rimg-calc-warning-content > strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #111827;
+}
+
+.rimg-calc-warning-content p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #68717d;
+}
+
+.rimg-calc-warning-content p strong {
+    color: #111827;
+}
+
+.rimg-calc-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 20px;
+    color: #8a929d;
+}
+
+.rimg-calc-disclaimer span {
+    flex: 0 0 auto;
+    font-size: 14px;
+}
+
+.rimg-calc-disclaimer p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.rimg-calc-cta {
+    width: 100%;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 0 22px;
+    border-radius: 10px;
+    background: #1264ff;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.rimg-calc-cta:hover {
+    background: #0757ed;
+    color: #ffffff;
+}
+
+@media (max-width: 650px) {
+
+    .rimg-calc {
+        padding: 65px 16px;
+    }
+
+    .rimg-calc-header h2 {
+        font-size: 40px;
+        letter-spacing: -1.5px;
+    }
+
+    .rimg-calc-header p {
+        font-size: 14px;
+    }
+
+    .rimg-calc-card {
+        padding: 22px;
+        border-radius: 16px;
+    }
+
+    .rimg-calc-result {
+        padding: 26px 16px;
+    }
+
+    .rimg-calc-result-value {
+        font-size: 48px;
+    }
+
+    .rimg-calc-warning {
+        padding: 16px;
+    }
+
+    .rimg-calc-presets {
+        gap: 6px;
+    }
+
+    .rimg-calc-presets button {
+        flex: 1;
+        min-width: 0;
+        padding: 0 8px;
+    }
+}
+
+</style>
+
+
+<section class="rimg-calc" id="calculator">
+
+    <div class="rimg-calc-container">
+
+        <div class="rimg-calc-header">
+
+            <div class="rimg-calc-eyebrow">
+                RIMG CASHBACK CALCULATOR
+            </div>
+
+            <h2>
+                See what you could
+                <span>get back.</span>
+            </h2>
+
+            <p>
+                Estimate your potential cashback based on your
+                eligible trading volume.
+            </p>
+
+        </div>
+
+
+        <div class="rimg-calc-card">
+
+            <div class="rimg-calc-field">
+
+                <label for="rimgCalcInstrument">
+                    TRADING INSTRUMENT
+                </label>
+
+                <select id="rimgCalcInstrument">
+
+                    <option value="forex">
+                        Forex Pairs — $7 / lot
+                    </option>
+
+                    <option value="gold">
+                        Gold — $7 / lot
+                    </option>
+
+                    <option value="indices">
+                        Indices — $70 / lot
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="rimg-calc-field">
+
+                <label for="rimgCalcLots">
+                    ESTIMATED TRADING VOLUME
+                </label>
+
+                <div class="rimg-calc-input-wrap">
+
+                    <input
+                        type="number"
+                        id="rimgCalcLots"
+                        value="1"
+                        min="0.01"
+                        step="0.01"
+                    >
+
+                    <span>LOTS</span>
+
+                </div>
+
+
+                <div class="rimg-calc-presets">
+
+                    <button type="button" data-rimg-lots="1">1</button>
+                    <button type="button" data-rimg-lots="5">5</button>
+                    <button type="button" data-rimg-lots="10">10</button>
+                    <button type="button" data-rimg-lots="25">25</button>
+                    <button type="button" data-rimg-lots="50">50</button>
+                    <button type="button" data-rimg-lots="100">100</button>
+
+                </div>
+
+            </div>
+
+
+            <div class="rimg-calc-result">
+
+                <div class="rimg-calc-result-label">
+                    ESTIMATED CASHBACK
+                </div>
+
+                <div
+                    class="rimg-calc-result-value"
+                    id="rimgCalcCashback"
+                >
+                    $7.00
+                </div>
+
+                <div
+                    class="rimg-calc-result-description"
+                    id="rimgCalcDescription"
+                >
+                    Based on $7 cashback per eligible lot.
+                </div>
+
+            </div>
+
+
+            <div class="rimg-calc-warning">
+
+                <div class="rimg-calc-warning-icon">
+                    ⏱
+                </div>
+
+                <div class="rimg-calc-warning-content">
+
+                    <strong>
+                        5-MINUTE MINIMUM HOLDING PERIOD
+                    </strong>
+
+                    <p>
+                        Eligible trades must be held for at least
+                        <strong>5 minutes</strong> to qualify for
+                        RIMG cashback. Trades closed before 5 minutes
+                        may not qualify.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="rimg-calc-disclaimer">
+
+                <span>ⓘ</span>
+
+                <p>
+                    Cashback rates are illustrative and may vary
+                    depending on the broker, account type,
+                    instrument and eligible trading activity.
+                </p>
+
+            </div>
+
+
+            <a
+                href="https://app.rimg.co.za"
+                class="rimg-calc-cta"
+            >
+                Start earning cashback
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const instrument =
+        document.getElementById("rimgCalcInstrument");
+
+    const lotsInput =
+        document.getElementById("rimgCalcLots");
+
+    const cashback =
+        document.getElementById("rimgCalcCashback");
+
+    const description =
+        document.getElementById("rimgCalcDescription");
+
+    const presetButtons =
+        document.querySelectorAll("[data-rimg-lots]");
+
+
+    if (!instrument || !lotsInput || !cashback) {
+        return;
+    }
+
+
+    const rates = {
+        forex: 7,
+        gold: 7,
+        indices: 70
+    };
+
+
+    function updateCalculator() {
+
+        let lots = parseFloat(lotsInput.value);
+
+        if (isNaN(lots) || lots < 0) {
+            lots = 0;
+        }
+
+
+        const rate = rates[instrument.value];
+
+        const total = lots * rate;
+
+
+        cashback.textContent =
+            "$" + total.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+
+        if (instrument.value === "indices") {
+
+            description.textContent =
+                "Based on $70 cashback per eligible lot.";
+
+        } else {
+
+            description.textContent =
+                "Based on $7 cashback per eligible lot.";
+
+        }
+
+
+        presetButtons.forEach(function (button) {
+
+            const buttonLots =
+                parseFloat(button.dataset.rimgLots);
+
+            button.classList.toggle(
+                "rimg-active",
+                buttonLots === lots
+            );
+
+        });
+
+    }
+
+
+    instrument.addEventListener(
+        "change",
+        updateCalculator
+    );
+
+
+    lotsInput.addEventListener(
+        "input",
+        updateCalculator
+    );
+
+
+    presetButtons.forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            lotsInput.value =
+                button.dataset.rimgLots;
+
+            updateCalculator();
+
+        });
+
+    });
+
+
+    updateCalculator();
+
+});
+
+</script>
+        <!-- ==========================================
      FEATURES / DASHBOARD SECTION
 =========================================== -->
 
